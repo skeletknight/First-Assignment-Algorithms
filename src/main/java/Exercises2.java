@@ -97,12 +97,30 @@ public class Exercises2 {
     You can return the answer in any order.
     */
 
-    public List<List<Integer>> permute(int[] nums) {
+    public class Permutations {
+        public List<List<Integer>> permute(int[] nums) {
+            List<List<Integer>> result = new ArrayList<>();
+            backtrack(nums, new ArrayList<>(), result);
+            return result;
+        }
 
-        return null;
-    }
+        private void backtrack(int[] nums, List<Integer> current, List<List<Integer>> result) {
+            if (current.size() == nums.length) {
+                result.add(new ArrayList<>(current));
+                return;
+            }
+            for (int num : nums) {
+                if (!current.contains(num)) {
+                    current.add(num);
+                    backtrack(nums, current, result);
+                    current.remove(current.size() - 1);
+                }
+            }
+        }
 
-    public static void main(String[] args) {
-        // test your code here!
+
+        public static void main(String[] args) {
+            // test your code here!
+        }
     }
 }
